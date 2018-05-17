@@ -1,9 +1,9 @@
 
-let song;
+let audio;
 
 function setup() {
-  song = createCanvas(windowWidth, windowHeight);
-  song.drop(dropFile);
+  let c = createCanvas(windowWidth, windowHeight);
+  c.drop(dropFile);
 
 }
 
@@ -12,15 +12,12 @@ function draw() {
 
 }
 
-function keyTyped() {
-  if (keyCode === "32"){
-    song.play();
+function dropFile(file){
+  if (file.type === "audio") {
+    audio = loadSound(file.data, playAudio);
   }
 }
 
-function dropFile(file){
-  song = loadSound(file.data).hide();
-  if (file.type === "audio") {
-    song = file.data;
-  }
+function playAudio() {
+  audio.play();
 }

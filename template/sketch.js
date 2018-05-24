@@ -1,11 +1,14 @@
 let audio;
 let ampSlider, frequencySlider;
 let ampValue, FrequencyValue;
-let playButton, pauseButton;
+let playButton, pauseButton, nextButton;
 let stateChecker = true;
+let state;
+
 
 
 function setup() {
+  state = 1;
   let c = createCanvas(windowWidth, windowHeight);
   c.drop(dropFile);
 
@@ -36,6 +39,11 @@ function pauseAudio() {
   audio.pause();
 }
 
+function mainState() {
+  nextButton.remove();
+  state = 2;
+}
+
 function setupSliders(){
   ampSlider = createSlider(0, 100, 50);
   ampSlider.position(width/2, height/2);
@@ -46,16 +54,27 @@ function setupSliders(){
 }
 
 function draw() {
-  background(255);
+  if (state === 1) {
+    background(0);
 
-  if (stateChecker) {
-    setupButtons();
-    setupSliders();
-    stateChecker = false;
+    nextButton = createButton("P L A Y");
+    nextButton.position(width/2, height/2);
+    nextButton.mousePressed(mainState);
+
   }
 
-  ampValue = 0.01*ampSlider.value();
-  print(ampSlider.value());
-  audio.amp(ampValue);
+  if (state === 2) {
+    background(0);
 
+    if (stateChecker) {
+      setupButtons();
+      setupSliders();
+      stateChecker = false;
+    }
+
+    ampValue = 0.01*ampSlider.value();
+    print(ampSlider.value());
+    audio.amp(ampValue);
+
+  }
 }

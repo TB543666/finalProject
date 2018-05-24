@@ -5,13 +5,10 @@ let playButton, pauseButton, nextButton;
 let stateChecker = true;
 let state;
 
-
-
 function setup() {
   state = 1;
   let c = createCanvas(windowWidth, windowHeight);
   c.drop(dropFile);
-
 }
 
 function dropFile(file){
@@ -30,7 +27,6 @@ function setupButtons() {
   pauseButton.mousePressed(pauseAudio);
 }
 
-
 function playAudio() {
   audio.play();
 }
@@ -40,20 +36,21 @@ function pauseAudio() {
 }
 
 function mainState() {
-  nextButton.remove();
+  removeElements(nextButton);
   state = 2;
 }
 
 function setupSliders(){
-  ampSlider = createSlider(0, 100, 50);
+  ampSlider = createSlider(0, 1, 0.3,0);
   ampSlider.position(width/2, height/2);
+  ampSlider.style("width", "200px");
 
 
   // frequencySlider = createSlider(100);
   // frequencySlider.position(width - 100, 100);
 }
 
-function draw() {
+function draw(file) {
   if (state === 1) {
     background(0);
 
@@ -63,18 +60,16 @@ function draw() {
 
   }
 
-  if (state === 2) {
-    background(0);
-
+  else if (state === 2) {
     if (stateChecker) {
       setupButtons();
       setupSliders();
       stateChecker = false;
     }
 
-    ampValue = 0.01*ampSlider.value();
-    print(ampSlider.value());
+    ampValue = ampSlider.value();
     audio.amp(ampValue);
+    print(ampValue);
 
   }
 }

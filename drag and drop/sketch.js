@@ -1,9 +1,11 @@
 let audio;
 let ampSlider, frequencySlider;
-let ampValue, FrequencyValue;
+let ampValue, frequencyValue;
 let playButton, pauseButton, nextButton;
 let stateChecker = true;
 let state;
+let audioLoaded = false;
+
 
 function setup() {
   state = 1;
@@ -45,9 +47,10 @@ function setupSliders(){
   ampSlider.position(width/2, height/2);
   ampSlider.style("width", "200px");
 
-
-  // frequencySlider = createSlider(100);
-  // frequencySlider.position(width - 100, 100);
+  // let frequency = audio.Oscillator();
+  frequencySlider = createSlider(0, 10000, frequency, 0);
+  frequencySlider.position(width/2, height/2+100);
+  frequencySlider.style("width", "200px");
 }
 
 function draw(file) {
@@ -61,15 +64,26 @@ function draw(file) {
   }
 
   else if (state === 2) {
-    if (stateChecker) {
+
+    if (stateChecker){
       setupButtons();
       setupSliders();
       stateChecker = false;
+      state = 3;
     }
 
+    else{
+      state = 1;
+    }
+  }
+
+  else if (state === 3) {
     ampValue = ampSlider.value();
     audio.amp(ampValue);
-    print(ampValue);
+    // print(ampValue);
 
+    frequencyValue = frequencySlider.value();
+    audio.freq(frequencyValue);
+    print(frequencyValue);
   }
 }

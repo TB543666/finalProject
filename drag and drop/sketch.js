@@ -2,7 +2,7 @@ let audio;
 let ampSlider, frequencySlider;
 let ampValue, frequencyValue;
 let playButton, pauseButton, nextButton;
-let stateChecker = true;
+let playerButtonState = true;
 let state;
 let audioLoaded = false;
 
@@ -19,14 +19,23 @@ function dropFile(file){
   }
 }
 
-function setupButtons() {
+function playerButtons() {
   playButton = createButton("P L A Y");
+  playButton.attribute("type", "button");
+  playButton.parent("buttons");
+  playButton.class("btn btn-success mb-4 d-block");
   playButton.position(100, 100);
   playButton.mousePressed(playAudio);
 
   pauseButton = createButton("P A U S E");
   pauseButton.position(200, 100);
   pauseButton.mousePressed(pauseAudio);
+}
+
+function startButton() {
+  nextButton = createButton("S T A R T");
+  nextButton.position(width/2, height/2);
+  nextButton.mousePressed(mainState);
 }
 
 function playAudio() {
@@ -44,31 +53,31 @@ function mainState() {
 
 function setupSliders(){
   ampSlider = createSlider(0, 1, 0.3,0);
+  ampSlider.attribute("type","button");
+  ampSlider.class("btn btn-success mb-4 d-block");
   ampSlider.position(width/2, height/2);
   ampSlider.style("width", "200px");
 
-  // let frequency = audio.Oscillator();
-  frequencySlider = createSlider(0, 10000, frequency, 0);
-  frequencySlider.position(width/2, height/2+100);
-  frequencySlider.style("width", "200px");
+  // // let frequency = audio.Oscillator();
+  // frequencySlider = createSlider(0, 10000, frequency, 0);
+  // frequencySlider.position(width/2, height/2+100);
+  // frequencySlider.style("width", "200px");
 }
 
 function draw(file) {
   if (state === 1) {
-    background(0);
+    background(255);
 
-    nextButton = createButton("P L A Y");
-    nextButton.position(width/2, height/2);
-    nextButton.mousePressed(mainState);
+
 
   }
 
   else if (state === 2) {
 
-    if (stateChecker){
-      setupButtons();
+    if (playerButtonState){
+      playerButtons();
       setupSliders();
-      stateChecker = false;
+      playerButtonState = false;
       state = 3;
     }
 

@@ -2,7 +2,7 @@
 let audio;
 let ampSlider, frequencySlider;
 let ampValue, frequencyValue;
-let playButton, pauseButton, fileButton;
+let playButton, pauseButton,backButton, fileButton;
 let mediaPlayer, nightCoreConverter;
 let stateChecker = false;
 let state;
@@ -42,7 +42,7 @@ function screenText() {
     textSize(120);
     textStyle(BOLD);
     textFont("Agency FB");
-    text("P r o t o t y p e  M e d i a  P l a y e r", width/2, height/2-350);
+    text("P r o t o t y p e   M e d i a   P l a y e r", width/2, 150);
   }
 
   if (state === 2) {
@@ -51,22 +51,31 @@ function screenText() {
     textSize(50);
     textStyle(BOLD);
     textFont("Agency FB");
-    text("M u s i c  P l a y e r", 50, 100);
+    text("M u s i c   P l a y e r", 50, 100);
+  }
+
+  if (state === 3) {
+    textAlign(LEFT);
+    fill(184, 230, 255);
+    textSize(50);
+    textStyle(BOLD);
+    textFont("Agency FB");
+    text("N i g h t   C o r e   C o n c e r t e r", 50, 100);
   }
 }
 
 function setupButtons() {
   if (state === 1) {
     mediaPlayer = createButton("Media Player");
-    mediaPlayer.position(0, height/2);
+    mediaPlayer.position(0, 300);
     mediaPlayer.class("btn btn-primary btn-lg btn-block");
-    mediaPlayer.mousePressed(clearElements);
+    mediaPlayer.mousePressed(mediaPlayerState);
 
 
-    nightCoreConverter = createButton("Media Player");
-    mediaPlayer.position(0, height/2+100);
-    mediaPlayer.class("btn btn-primary btn-lg btn-block");
-    mediaPlayer.mousePressed(clearElements);
+    nightCoreConverter = createButton("Night Core Converter");
+    nightCoreConverter.position(0, 350);
+    nightCoreConverter.class("btn btn-primary btn-lg btn-block");
+    nightCoreConverter.mousePressed(nightCoreConverterState);
 
   }
 
@@ -86,32 +95,66 @@ function setupButtons() {
     // fileButton.class("btn btn-primary");
     // fileButton.mousePressed(pauseAudio);
   }
+
+  if (state === 3) {
+    playButton = createButton("P L A Y");
+    playButton.position(width/2-100, height/2+50);
+    playButton.class("btn btn-primary");
+    playButton.mousePressed(playAudio);
+
+    pauseButton = createButton("P A U S E");
+    pauseButton.position(width/2+25, height/2+50);
+    pauseButton.class("btn btn-primary");
+    pauseButton.mousePressed(pauseAudio);
+
+  }
+}
+
+function reloadProgramButton() {
+  backButton = createButton("Back");
+  backButton.position(0-10, height-42);
+  backButton.class("btn btn-pimary btn-lg");
+  backButton.mousePressed(reloadProgram);
+}
+
+
+function mediaPlayerState() {
+  clearElements();
+  state = 2;
+}
+
+function nightCoreConverterState() {
+  clearElements();
+  state = 3;
 }
 
 function clearElements() {
   removeElements(mediaPlayer);
+  removeElements(nightCoreConverter);
+}
+
+function reloadProgram() {
+  window.location.reload(true);
 }
 
 function setupSliders(){
   ampSlider = createSlider(0, 1, 0.3,0);
-  ampSlider.position(width/2-500, height/2);
+  ampSlider.position(width/2-500, height-200);
   ampSlider.style("width", "1000px");
 }
 
 function draw(file) {
   if (state === 1) {
     background(60, 161, 195);
-    clearElements();
     screenText();
     setupButtons();
   }
 
   if (state === 2) {
     background(60, 161, 195);
-    clearElements();
-
     screenText();
     // fileExplorer();
+    reloadProgramButton();
 
     if (stateChecker){
       setupButtons();
@@ -124,5 +167,22 @@ function draw(file) {
       ampValue = ampSlider.value();
       audio.amp(ampValue);
     }
+  }
+
+  if(state === 3) {
+    background(60, 161, 195);
+    clearElements();
+    screenText();
+    reloadProgramButton();
+
+    if (stateChecker){
+      audio.freq();
+      audio.speed
+      setupButtons();
+      setupSliders();
+      stateChecker = false;
+      volume = true;
+    }
+
   }
 }

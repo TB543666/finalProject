@@ -1,7 +1,9 @@
+
 let audio;
 let ampSlider, frequencySlider;
 let ampValue, frequencyValue;
-let playButton, pauseButton, startButton, fileButton;
+let playButton, pauseButton, fileButton;
+let mediaPlayer, nightCoreConverter;
 let stateChecker = false;
 let state;
 let audioLoaded = false;
@@ -40,7 +42,7 @@ function screenText() {
     textSize(120);
     textStyle(BOLD);
     textFont("Agency FB");
-    text("P r o t o t y p e  M e d i a  P l a y e r", width/2, height/2-150);
+    text("P r o t o t y p e  M e d i a  P l a y e r", width/2, height/2-350);
   }
 
   if (state === 2) {
@@ -55,10 +57,17 @@ function screenText() {
 
 function setupButtons() {
   if (state === 1) {
-    startButton = createButton("S T A R T");
-    startButton.position(width/2-75, height/2);
-    startButton.class("btn btn-primary btn-lg");
-    startButton.mousePressed(mainState);
+    mediaPlayer = createButton("Media Player");
+    mediaPlayer.position(0, height/2);
+    mediaPlayer.class("btn btn-primary btn-lg btn-block");
+    mediaPlayer.mousePressed(clearElements);
+
+
+    nightCoreConverter = createButton("Media Player");
+    mediaPlayer.position(0, height/2+100);
+    mediaPlayer.class("btn btn-primary btn-lg btn-block");
+    mediaPlayer.mousePressed(clearElements);
+
   }
 
   if (state === 2) {
@@ -79,9 +88,8 @@ function setupButtons() {
   }
 }
 
-function mainState() {
-  removeElements(startButton);
-  state = 2;
+function clearElements() {
+  removeElements(mediaPlayer);
 }
 
 function setupSliders(){
@@ -93,12 +101,14 @@ function setupSliders(){
 function draw(file) {
   if (state === 1) {
     background(60, 161, 195);
+    clearElements();
     screenText();
     setupButtons();
   }
 
   if (state === 2) {
     background(60, 161, 195);
+    clearElements();
 
     screenText();
     // fileExplorer();

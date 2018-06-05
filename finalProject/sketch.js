@@ -1,13 +1,13 @@
+
 let audio;
-let ampSlider, frequencySlider;
-let ampValue, frequencyValue;
+let ampSlider;
+let ampValue;
 let playButton, pauseButton,backButton, fileButton;
 let mediaPlayer, nightCoreConverter;
 let stateChecker = false;
 let state;
 let audioLoaded = false;
 let volume = false;
-
 
 function setup() {
   state = 1;
@@ -60,7 +60,7 @@ function screenText() {
     textSize(50);
     textStyle(BOLD);
     textFont("Agency FB");
-    text("N i g h t   C o r e   C o n c e r t e r", 50, 100);
+    text("N i g h t   C o r e   C o n v e r t e r", 50, 100);
   }
 }
 
@@ -68,16 +68,12 @@ function setupButtons() {
   if (state === 1) {
     mediaPlayer = createButton("Media Player");
     mediaPlayer.position(0, 300);
-    mediaPlayer.attribute("type", "button");
-    mediaPlayer.parent("buttons");
     mediaPlayer.class("btn btn-primary btn-lg btn-block");
     mediaPlayer.mousePressed(mediaPlayerState);
 
 
     nightCoreConverter = createButton("Night Core Converter");
-    nightCoreConverter.position(0, 360);
-    nightCoreConverter.attribute("type", "button");
-    nightCoreConverter.parent("buttons");
+    nightCoreConverter.position(0, 350);
     nightCoreConverter.class("btn btn-primary btn-lg btn-block");
     nightCoreConverter.mousePressed(nightCoreConverterState);
 
@@ -86,7 +82,6 @@ function setupButtons() {
   if (state === 2) {
     playButton = createButton("P L A Y");
     playButton.position(width/2-100, height/2+50);
-
     playButton.class("btn btn-primary");
     playButton.mousePressed(playAudio);
 
@@ -143,8 +138,8 @@ function reloadProgram() {
 }
 
 function setupSliders(){
-  ampSlider = createSlider(0, 1, 0.3,0);
-  ampSlider.position(width/2-500, height/2);
+  ampSlider = createSlider(0, 1, 0.4,0);
+  ampSlider.position(width/2-500,height/2);
   ampSlider.style("width", "1000px");
 }
 
@@ -176,18 +171,15 @@ function draw(file) {
 
   if(state === 3) {
     background(60, 161, 195);
-    clearElements();
     screenText();
     reloadProgramButton();
 
     if (stateChecker){
-      audio.freq();
-      audio.speed();
+      audio.rate(1.25);
       setupButtons();
       setupSliders();
       stateChecker = false;
       volume = true;
     }
-
   }
 }

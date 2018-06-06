@@ -2,20 +2,20 @@
  * DEMO: Draw the waveform of a sound as it plays using p5.FFT.waveform()
  */
 
-var soundFile;
-var fft;
-var fftBands = 1024;
+let soundFile;
+let fft;
+let fftBands = 512;
 
 // Array of amplitude values (0-255) over time.
-var waveform = [];
+let waveform = [];
 
 function preload() {
-  soundFormats('mp3', 'ogg');
+  soundFormats("mp3", "ogg");
   soundFile = loadSound("music.mp3");
 }
 
 function setup() {
-  createCanvas(fftBands, 256);
+  createCanvas(windowWidth, windowHeight);
   noFill();
 
   soundFile.loop();
@@ -26,9 +26,7 @@ function setup() {
    *    - Smoothing
    *    - Length of the FFT's analyze/waveform array. Must be a power of two between 16 and 1024 (default).
    */
-  fft = new p5.FFT(.99, fftBands);
-
-  p = createP('press any key to pause / play');
+  fft = new p5.FFT(0.1, 2048);
 }
 
 function draw() {
@@ -40,19 +38,11 @@ function draw() {
   waveform = fft.waveform();
 
   // Draw snapshot of the waveform
-  beginShape();
-  for (var i = 0; i< waveform.length; i++){
-    stroke(5);
+  beginShape(QUAD_STRIP);
+  for (let i = 0; i< waveform.length; i++){
+    stroke(0);
     strokeWeight(5);
     vertex(i, map(waveform[i], -1, 1, height, 0) );
   }
   endShape();
-}
-
-function keyPressed() {
-  if (soundFile.isPlaying() ) {
-    soundFile.pause();
-  } else {
-    soundFile.play();
-  }
 }

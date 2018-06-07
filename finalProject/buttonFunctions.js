@@ -17,6 +17,10 @@ function reloadProgram() {
   window.location.reload(true);
 }
 
+function saveAudio() {
+  saveSound(audio, "Nightcore");
+}
+
 function playAudio() {
   audio.play();
 }

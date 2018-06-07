@@ -6,7 +6,6 @@ function setupButtons() {
     mediaPlayer.class("btn btn-primary btn-lg btn-block");
     mediaPlayer.mousePressed(mediaPlayerState);
 
-
     nightCoreConverter = createButton("Night Core Converter");
     nightCoreConverter.position(0, 350);
     nightCoreConverter.class("btn btn-primary btn-lg btn-block");
@@ -50,4 +49,11 @@ function reloadProgramButton() {
   backButton.position(0-10, height-42);
   backButton.class("btn btn-pimary btn-lg");
   backButton.mousePressed(reloadProgram);
+}
+
+function saveAudioButton() {
+  saveButton = createButton("S A V E");
+  saveButton.position(width-73, height-36);
+  saveButton.class("btn btn-primary");
+  saveButton.mousePressed(saveAudio);
 }

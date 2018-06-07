@@ -1,12 +1,10 @@
 let audio;
-let ampSlider;
-let ampValue;
-let playButton, pauseButton,backButton, fileButton;
+let state;
+let ampSlider, ampValue;
+let playButton, pauseButton,backButton, saveButton, fileButton;
 let mediaPlayer, nightCoreConverter;
 let stateChecker = false;
-let state;
-let audioLoaded = false;
-let volume = false;
+let ampSliderState = false;
 
 function setup() {
   state = 1;
@@ -44,15 +42,15 @@ function draw(file) {
     screenText();
     // fileExplorer();
     reloadProgramButton();
-
+    
     if (stateChecker){
       setupButtons();
       setupSliders();
       stateChecker = false;
-      volume = true;
+      ampSliderState = true;
     }
 
-    if (volume === true) {
+    if (ampSliderState === true) {
       ampValue = ampSlider.value();
       audio.amp(ampValue);
     }
@@ -62,13 +60,14 @@ function draw(file) {
     background(60, 161, 195);
     screenText();
     reloadProgramButton();
+    saveAudioButton();
 
     if (stateChecker){
       audio.rate(1.25);
       setupButtons();
       setupSliders();
       stateChecker = false;
-      volume = true;
+      ampSliderState = true;
     }
   }
 }

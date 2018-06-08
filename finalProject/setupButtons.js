@@ -7,7 +7,7 @@ function setupButtons() {
     mediaPlayer.mousePressed(mediaPlayerState);
 
     nightCoreConverter = createButton("Night Core Converter");
-    nightCoreConverter.position(0, 350);
+    nightCoreConverter.position(0, 375);
     nightCoreConverter.class("btn btn-primary btn-lg btn-block");
     nightCoreConverter.mousePressed(nightCoreConverterState);
 

@@ -1,4 +1,3 @@
-
 let song;
 let timer;
 
@@ -27,4 +26,3 @@ function mouseClicked() {
 
   }
 }
-// https://github.com/kopiro/siriwavejs

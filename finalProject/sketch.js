@@ -42,7 +42,7 @@ function draw(file) {
     screenText();
     // fileExplorer();
     reloadProgramButton();
-    
+
     if (stateChecker){
       setupButtons();
       setupSliders();

@@ -1,19 +1,24 @@
+
 let song;
 let timer;
+let gif;
 
 function preload() {
   song = loadSound("music.mp3");
+  gif = createImg("anime.gif");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   timer = width/song.duration();
   song.play();
-
+  gif.size(width,height);
 }
 
 function draw() {
+  background(gif);
   print(song.currentTime());
+
 
   fill(0);
 
@@ -26,3 +31,4 @@ function mouseClicked() {
 
   }
 }
+// https://github.com/kopiro/siriwavejs

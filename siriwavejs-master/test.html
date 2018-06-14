@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<style>
+		body {
+			background: #000;
+		}
+		#siric {
+			//width: 0px;
+			height: 0px;
+			display: block;
+			margin: 0 auto;
+			margin-top: 350px;
+		}
+	</style>
+	<body>
+
+		<div id="siric"></div>
+		<script src="siriwave.js"></script>
+		<script>
+			var SW = new SiriWave({
+				width: 1910,
+				height: 300,
+				speed: 0.03,
+				amplitude: 1,
+				container: document.getElementById('siric'),
+				autostart: true,
+			});
+		</script>
+
+	</body>
+	</html>

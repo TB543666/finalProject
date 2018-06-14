@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/fullscreenp5.css">
+    <script src="js/p5.min.js"></script>
+    <script src="js/p5.dom.min.js"></script>
+    <script src="js/p5.sound.min.js"></script>
+    <script src="js/siriwave.js"></script>
+
+	<style>
+		#siric {
+			width: 0px;
+			height: 0px;
+			display: block;
+			margin: 0 auto;
+			margin-top: 350px;
+		}
+	</style>
+	<body>
+
+		<div id="siric"></div>
+		<script>
+			var SW = new SiriWave({
+				width: 1910,
+				height: 300,
+				speed: 0.03,
+				amplitude: 1,
+				container: document.getElementById('siric'),
+				autostart: true,
+			});
+		</script>
+
+	</body>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+

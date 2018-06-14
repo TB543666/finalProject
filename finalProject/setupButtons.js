@@ -1,4 +1,4 @@
-
+// This function is used to set up the buttons on all the different states that are used.
 function setupButtons() {
   if (state === 1) {
     mediaPlayer = createButton("Media Player");
@@ -6,7 +6,7 @@ function setupButtons() {
     mediaPlayer.class("btn btn-primary btn-lg btn-block");
     mediaPlayer.mousePressed(mediaPlayerState);
 
-    nightCoreConverter = createButton("Night Core Converter");
+    nightCoreConverter = createButton("Nightcore Converter");
     nightCoreConverter.position(0, 375);
     nightCoreConverter.class("btn btn-primary btn-lg btn-block");
     nightCoreConverter.mousePressed(nightCoreConverterState);
@@ -24,10 +24,6 @@ function setupButtons() {
     pauseButton.class("btn btn-primary");
     pauseButton.mousePressed(pauseAudio);
 
-    // fileButton = createButton("P A U S E");
-    // fileButton.position(width/2-50, height/2+150);
-    // fileButton.class("btn btn-primary");
-    // fileButton.mousePressed(pauseAudio);
   }
 
   if (state === 3) {
@@ -44,6 +40,7 @@ function setupButtons() {
   }
 }
 
+// This function sets up the bac button which calls the reloadProgram function when it is pressed.
 function reloadProgramButton() {
   backButton = createButton("Back");
   backButton.position(0-10, height-42);
@@ -51,6 +48,7 @@ function reloadProgramButton() {
   backButton.mousePressed(reloadProgram);
 }
 
+// This button calls the saveAudio function when it is pressed
 function saveAudioButton() {
   saveButton = createButton("S A V E");
   saveButton.position(width-73, height-36);

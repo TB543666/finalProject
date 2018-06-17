@@ -1,18 +1,15 @@
-let wave = new SiriWave({
-	container: document.getElementById('your-div'),
-	width: 640,
-	height: 200
+let siriWave = new SiriWave({
+  width: 1910,
+  height: 200,
+  speed: 0.03,
+  container: document.getElementById("app"),
+  autostart: true,
 });
+
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  wave.setNoise(0.5);
-  wave.speed(0.4);
-  wave.start();
-  
-}
-
-function draw() {
   background(255);
-}
 
+}

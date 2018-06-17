@@ -7,10 +7,19 @@ function setupButtons() {
     mediaPlayer.mousePressed(mediaPlayerState);
 
     nightCoreConverter = createButton("Nightcore Converter");
-    nightCoreConverter.position(0, 375);
+    nightCoreConverter.position(0, 400);
     nightCoreConverter.class("btn btn-primary btn-lg btn-block");
     nightCoreConverter.mousePressed(nightCoreConverterState);
 
+    // radioPlayer = createButton("Radio Player");
+    // radioPlayer.position(0, 500);
+    // radioPlayer.class("btn btn-primary btn-lg btn-block");
+    // radioPlayer.mousePressed(radioPlayerState);
+
+    secretPlayer = createButton("Secret Player");
+    secretPlayer.position(0, 950);
+    secretPlayer.class("btn btn-primary btn-sm");
+    secretPlayer.mousePressed(secretPlayerState);
   }
 
   if (state === 2) {
